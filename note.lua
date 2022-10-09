@@ -6,5 +6,5 @@ function note:new()
 	return note
 end
 
-note = note:new()
+-- note = note:new()
 return note
