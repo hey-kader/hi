@@ -35,7 +35,7 @@ function box:new(x, y, w, h, text, color)
 	if h then
 		box['h'] = h
 	else
-		box['h'] = 17
+		box['h'] = 18
 	end
 
 	if text then
@@ -61,28 +61,33 @@ end
 Box = box:new()
 function box:draw()
 	love.graphics.setColor(box.color)
-	love.graphics.setBackgroundColor(box.altclr)
 	love.graphics.rectangle("line", box.x, box.y, box.w, box.h)
 	love.graphics.print(box.text, box.x+3, box.y+3)
+		love.graphics.print(love.mouse.getX() .. ', ', 0, 0)
+		love.graphics.print(love.mouse.getY(), 28, 0)
 end
 
 function box:update()
 	local x, y = love.mouse.getPosition()
 	if x > box.x and x < box.x + box.w and y > box.y and y < box.y + box.h then
 		box.active = true
+		box.text = "hovering!"
 	if box.active == true and love.mouse.isDown(1) then
 		box.toggle = true
+		box.text = "activated!"
+
 		love.graphics.setColor(box.clicked)	
 	elseif box.toggle == true then
 		love.graphics.setColor(box.clicked)
 		box.toggle = false
+		box.text = "off."
 	end
 	else
+		box.text = "not hovering, not active."
 		box.active = false
 	end
 
 end
 
 
-return box
-
+return Box
