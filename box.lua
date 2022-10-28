@@ -1,4 +1,5 @@
 box = {}
+setmetatable(box, {})
 
 --> x (horizontal offset)
 --> y (vertical offset)
@@ -13,6 +14,8 @@ box = {}
 
 
 function box:new(x, y, w, h, text, color)
+	
+	box['canvas'] = love.graphics.newCanvas()
 
   if x then
 		box['x'] = x
@@ -58,7 +61,6 @@ function box:new(x, y, w, h, text, color)
 	return box
 end
 
-Box = box:new()
 function box:draw()
 	love.graphics.setColor(box.color)
 	love.graphics.rectangle("line", box.x, box.y, box.w, box.h)
@@ -90,4 +92,4 @@ function box:update()
 end
 
 
-return Box
+return box

@@ -1,10 +1,13 @@
 note = {}
-function note:new()
+setmetatable(note, {})
+function note:new(x, y)
+	n = {}
+	setmetatable(n, {})
 	box = require ("box")
-	note['box'] = box:new() 
-	note.box.text = "this is a note!"
-	return note
+	n['box'] = box:new(x, y) 
+	n.box.text = "this is a note!"
+	return n
 end
+Note = note:new(x, y)
 
-Note = note:new()
 return Note
